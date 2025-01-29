@@ -1,0 +1,13 @@
+.SignUp-In-Button {
+	font-size: 1.6rem;
+	font-weight: 700;
+	padding-block: 0.75rem;
+	width: 75%;
+	position: absolute;
+	bottom: 0;
+	transform: translateY(50%);
+	background-color: #1157ff;
+	border: none;
+	border-radius: 50px;
+	color: white;
+}
