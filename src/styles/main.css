@@ -3,6 +3,8 @@
 @import './common/normalize.css' layer(base);
 @import './common/base.css' layer(base);
 
-@import './components/prose.css' layer(components);
+@import './components/FormInput.css' layer(components);
+@import './components/SignUp-In.css' layer(components);
+@import './components/SignUp-In-Button.css' layer(components);
 
 @import './utilities/a11y.css' layer(utilities);

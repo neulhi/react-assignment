@@ -1,0 +1,17 @@
+.SignUp-In {
+	position: relative;
+	max-width: 30rem;
+	width: 100%;
+	margin: 50px auto;
+	border: 1px solid #d2d2da;
+	padding: 1.5rem 2rem 4rem;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+
+	div {
+		width: 100%;
+	}
+}
