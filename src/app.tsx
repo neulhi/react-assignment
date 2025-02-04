@@ -1,13 +1,7 @@
-import SignUpForm from './components/SignUp-In/SignUpForm';
-import SignInForm from './components/SignUp-In/SignInForm';
+import ShoppingCart from './components/ShoppingCart';
 
 function App() {
-  return (
-    <>
-      <SignUpForm />
-      <SignInForm />
-    </>
-  );
+  return <ShoppingCart />;
 }
 
 export default App;
