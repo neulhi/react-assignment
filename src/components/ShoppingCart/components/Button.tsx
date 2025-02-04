@@ -10,7 +10,7 @@ function CounterButton({ count, setCount, maxCount }: CounterButtonProps) {
   return (
     <div
       className={tm(
-        'flex items-center gap-2 h-auto self-start',
+        'flex items-center gap-2 h-auto',
         'border border-gray-300 bg-gray-200 w-30 rounded-full'
       )}
     >
@@ -22,6 +22,7 @@ function CounterButton({ count, setCount, maxCount }: CounterButtonProps) {
         )}
         onClick={() => setCount(count > 0 ? count - 1 : 0)}
         disabled={count === 0}
+        aria-label="수량 빼기"
       >
         -
       </button>
@@ -34,6 +35,7 @@ function CounterButton({ count, setCount, maxCount }: CounterButtonProps) {
         )}
         onClick={() => setCount(count < maxCount ? count + 1 : maxCount)}
         disabled={count >= maxCount}
+        aria-label="수량 더하기"
       >
         +
       </button>

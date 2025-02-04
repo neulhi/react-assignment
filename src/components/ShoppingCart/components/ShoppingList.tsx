@@ -56,7 +56,7 @@ function ShoppingList({ cart, setCart }: ShoppingListProps) {
             <img src={list.img} alt={list.alt} />
           </div>
           <div className={tm('flex items-center justify-between w-full')}>
-            <div>
+            <div className={tm('flex flex-col gap-3.5')}>
               <p className={tm('text-4xl text-gray-700 line-clamp-1')}>
                 {list.content}
               </p>
