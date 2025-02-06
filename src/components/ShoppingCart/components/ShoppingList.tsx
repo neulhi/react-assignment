@@ -52,9 +52,9 @@ function ShoppingList({ cart, setCart }: ShoppingListProps) {
           key={list.id}
           className={tm('flex items-center py-8 w-full gap-5')}
         >
-          <div>
+          <figure>
             <img src={list.img} alt={list.alt} />
-          </div>
+          </figure>
           <div className={tm('flex items-center justify-between w-full')}>
             <div className={tm('flex flex-col gap-3.5')}>
               <p className={tm('text-4xl text-gray-700 line-clamp-1')}>

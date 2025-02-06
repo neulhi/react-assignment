@@ -46,9 +46,9 @@ function ShoppingCart() {
         </h2>
       </div>
       <ShoppingList cart={cart} setCart={setCart} />
-      <div className={tm('pt-8 text-right text-4xl font-bold text-gray-700')}>
+      <p className={tm('pt-8 text-right text-4xl font-bold text-gray-700')}>
         구매총액: {totalAmount.toLocaleString()}원
-      </div>
+      </p>
     </div>
   );
 }
