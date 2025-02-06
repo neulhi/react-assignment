@@ -1,5 +1,7 @@
 # React 과제 저장소
 
+### [쇼핑 카트 UI 구현 README.md](/src/components/ShoppingCart/README.md)
+
 ```sh
 npm install # 또는 pnpm install
 ```
