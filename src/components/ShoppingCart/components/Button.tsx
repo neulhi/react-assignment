@@ -21,7 +21,7 @@ function CounterButton({ count, setCount, maxCount }: CounterButtonProps) {
           count === 0 && 'opacity-50 cursor-not-allowed'
         )}
         onClick={() => setCount(count > 0 ? count - 1 : 0)}
-        disabled={count === 0}
+        aria-disabled={count === 0}
         aria-label="수량 빼기"
       >
         -
@@ -34,7 +34,7 @@ function CounterButton({ count, setCount, maxCount }: CounterButtonProps) {
           count >= maxCount && 'opacity-50 cursor-not-allowed'
         )}
         onClick={() => setCount(count < maxCount ? count + 1 : maxCount)}
-        disabled={count >= maxCount}
+        aria-disabled={count >= maxCount}
         aria-label="수량 더하기"
       >
         +
