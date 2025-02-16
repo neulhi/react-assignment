@@ -1,5 +1,7 @@
 # React 과제 저장소
 
+### [카드 검색 리스트 UI 구현 README.md](/src/components/SearchCardList/README.md)
+
 ### [쇼핑 카트 UI 구현 README.md](/src/components/ShoppingCart/README.md)
 
 ```sh
