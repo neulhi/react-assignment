@@ -1,5 +1,6 @@
 import { tm } from '@/utils/tw-merge';
 import { useEffect, useId, useState } from 'react';
+import debounce from 'lodash-es/debounce';
 import { getQueryParam, setQueryParam } from '@/utils/query-param';
 import CardList from './CardList';
 import cardDataList from '../../data/cardData';
@@ -15,6 +16,19 @@ function SearchForm() {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
+
+  // lodash 디바운스 사용
+  useEffect(() => {
+    const debouncedUpdate = debounce(() => {
+      setQueryParam(query);
+    }, 300);
+
+    debouncedUpdate(); // 디바운스된 함수 실행
+
+    return () => {
+      debouncedUpdate.cancel(); // 클린업 함수로 디바운스 취소
+    };
+  }, [query]);
 
   // "검색" 버튼 클릭 시 URL 업데이트 및 필터링 적용
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
