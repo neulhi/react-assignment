@@ -1,5 +1,6 @@
 import { tm } from '@/utils/tw-merge';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
+import { getQueryParam, setQueryParam } from '@/utils/query-param';
 import CardList from './CardList';
 import cardDataList from '../../data/cardData';
 
@@ -8,31 +9,49 @@ export const boxStyle = 'bg-gray-300 rounded-md my-2 p-4';
 
 function SearchForm() {
   const searchInputId = useId();
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>(getQueryParam() ?? ''); // URL에서 초기 검색어 가져오기
 
   // 검색어 변경 핸들러
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value); // 검색어 상태 업데이트
+    setQuery(event.target.value);
   };
+
+  // "검색" 버튼 클릭 시 URL 업데이트 및 필터링 적용
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setQueryParam(query); // URL 업데이트
+  };
+
+  // 태그 클릭 시 해당 태그로 검색 실행
+  const handleTagClick = (tag: string) => {
+    setQuery(tag);
+    setQueryParam(tag);
+  };
+
+  // 뒤로 가기/앞으로 가기 시 URL 변화 감지하여 상태 업데이트
+  useEffect(() => {
+    const handlePopState = () => {
+      setQuery(getQueryParam() ?? '');
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   return (
     <div
       className={tm(
-        'flex flex-wrap flex-col bg-gray-500 rounded-md',
-        'w-full max-w-4xl h-auto p-4',
-        // 'translate-x-[5%] translate-y-[50%]',
-        'my-0 mx-auto'
+        'flex flex-wrap flex-col bg-gray-500 rounded-md w-full max-w-4xl h-auto p-4 my-0 mx-auto'
       )}
     >
-      <form>
+      <form onSubmit={handleSearch}>
         <label htmlFor={searchInputId} className="sr-only">
           카드 검색
         </label>
         <div className="flex flex-col justify-center">
           <div className={tm('flex items-center justify-between gap-2')}>
-            <label htmlFor={searchInputId} className="sr-only">
-              카드 검색
-            </label>
             <input
               type="search"
               id={searchInputId}
@@ -44,29 +63,28 @@ function SearchForm() {
             <button
               type="submit"
               className={tm(
-                'bg-gray-700 text-white p-4 rounded-md',
-                'flex shrink-0'
+                'bg-gray-700 text-white p-4 rounded-md flex shrink-0'
               )}
             >
               검색
             </button>
           </div>
+          {/* 태그 버튼 (클릭하면 해당 태그가 검색어가 됨) */}
           <div className="flex gap-4">
-            <button type="button" className={tm(boxStyle, 'shrink-0')}>
-              태그1
-            </button>
-            <button type="button" className={tm(boxStyle, 'shrink-0')}>
-              태그2
-            </button>
-            <button type="button" className={tm(boxStyle, 'shrink-0')}>
-              태그3
-            </button>
-            <button type="button" className={tm(boxStyle, 'shrink-0')}>
-              태그4
-            </button>
+            {['빨간색', '파란색', '초록색', '노란색'].map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => handleTagClick(tag)}
+                className={tm(boxStyle, 'shrink-0')}
+              >
+                {tag}
+              </button>
+            ))}
           </div>
         </div>
       </form>
+      {/* 필터링된 카드 리스트 렌더링 */}
       <CardList query={query} items={cardDataList} />
     </div>
   );
