@@ -1,7 +1,7 @@
-import ShoppingCart from './components/ShoppingCart';
+import SearchCardList from './components/SearchCardList';
 
 function App() {
-  return <ShoppingCart />;
+  return <SearchCardList />;
 }
 
 export default App;
